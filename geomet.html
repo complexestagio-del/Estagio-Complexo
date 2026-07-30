@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina Inicial</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/css/naosei.css">
+</head>
+<body>
+    <header class="header pb-4">
+        <h1 class="h1 ">Calculadora complexa</h1>
+        <!-- menu -->
+        <ul>
+            <li><a href="index.html">Operações básicas</a></li>
+            <li><a href="gauss.html">Representação gráfica</a></li>
+            <li><a href="geomet.html">Geometria analítica</a></li>
+            <li><a href="algtrigo.html">Conversão de formas</a></li>
+        </ul>
+    </header>
+     <div class="container mt-4">
+        <h1>Geometria analítica e números complexos</h1>
+        <div class="mt-4 col-lg-8" col-md-10>
+            <label>Entrada(s)</label><br>
+            <p>Z1=
+                <input type="number" id="">+
+                <input type="number" id="">× i
+            </p>
+            <p>Z2=
+                <input type="number" id="">+
+                <input type="number" id="">× i
+            </p>
+            <p>Z3=
+                <input type="number" id="">+
+                <input type="number" id="">× i
+            </p><!--Mínimo 3 operações, máximo 6-->
+            <button onclick="add()">+</button><!--aqui deve adicionar operações. o máximo deve ser 6
+            poderia talvez ou fazer o botão sumir ou mostrar uma mensagem-->
+        </div>
+        <canvas class="mt-4" id="ag" width="400" height="300" style="border:1px solid #000000;">    
+        </canvas>
+        <!--gráfico de AG-->
+    </div>
+    <script src="https://unpkg.com/mathjs@15.2.0/lib/browser/math.js"></script>
+    <script src="src/js/CNum.js"></script>
+    <script src="src/js/calc.js"></script>
+</body>
+</html>
