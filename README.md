@@ -1,5 +1,5 @@
 <p>Isso é um projeto de calculadora de números complexos, criado pela professora de matemática Suziane Bopp, do Colégio Técnico Industrial da UFSM, com a participação das alunas Ana Luiza Borges e Luiza Ramalho Poletto.</p>
-<p>Outros documentos do projeto: https://drive.google.com/drive/folders/1dSvpM_IwXj05j3tPxVOzGVQ16E37Zb1c?usp=drive_link </p>
+<p><a href="https://github.com/complexestagio-del/Estagio-Complexo" target="_blank">Documentos do Drive</a></p>
 WIP (work in progress, não está pronto)<br>
 <h2>O que cada arquivo é</h2>
 <ul>Estagio-Complexo:
