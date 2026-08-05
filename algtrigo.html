@@ -29,18 +29,20 @@
                     <button id="calc" onclick="altrigo()">Calcular</button>
                 </p>
             </div>
+            <div id="op" class=" p-2">
+                <button class="mt-4" onclick="">←<br>→</button> <!--Trocar entrada e saída-->
+            </div>
             <div class="bg-secondary col-4 p-2" id="main">
                 <label>Saída</label>
                 <p>Z = <span id='output'></span></p>
                 <!--FORMATO: Z = |Z|(cosθ+i*senθ)
                 pode haver a resolução tb??
-                θ em graus ou radianos?? ou os dois?-->
+                θ em graus e radianos?-->
             </div>
         </div>
-
+        <h3><a class="mt-4 btn btn-info" href="https://realizeeducacao.com.br/wp-content/uploads/2021/02/angulos-notaveis.png" target="_blank">Entenda os ângulos notáveis</a></h3>
         <!--seria interessante fazer o mesmo botão de trocar, mas dessa vez 
         só trocando a entrada e saída (forma trigonométrica para a algébrica e vice-versa)-->
-
     </main>
     <script src="https://unpkg.com/mathjs@15.2.0/lib/browser/math.js"></script>
     <script src="src/js/CNum.js"></script>
