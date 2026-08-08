@@ -37,7 +37,7 @@ header{
     }
   }
 }
-#aa,#ba,#ab,#bb{
+input[type="number"]{
   width: 50px;
 }
 label{
