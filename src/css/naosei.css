@@ -1,5 +1,12 @@
 body{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   background-color:whitesmoke;
+}
+.container{
+  flex:1 0 auto;
+  padding-bottom:20px;
 }
 
 button{
@@ -49,9 +56,12 @@ label{
   color:whitesmoke;
 }
 .footer{
-  background-size:contain;
+  position: sticky;
+  bottom: 0;
   background-color: rgb(32, 53, 65);
   text-align: center;
+  padding: 10px 0;
+  z-index: 100;
   li{
     list-style:none;
     margin:  10px;
