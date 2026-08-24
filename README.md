@@ -4,10 +4,10 @@
 WIP (work in progress, não está pronto)<br>
 <h2>O que cada arquivo é</h2>
 <ul>Estagio-Complexo:
-  <li>index.html: Onde faz as operações básicas e o conjugado de números complexos em sua forma retangular ou algébrica (era pra ser basi1 por ser com operações básicas mas se não o github redirecionava pro readme)</li>
-  <li>basi2.html: Onde faz as operações de números complexos em sua forma trigonométrica ou apolar</li>
-  <li>gauss.html: Representações gráficas no plano de Argand Gauss</li>
-  <li>geomet.html: Geometria analítica com números complexos (ainda não sei como colocar em prática)</li>
-  <li>algtrigo.html: Conversão de números complexos da forma algébrica para a trigonométrica e vice-versa</li>
-  <li>about.html: "Sobre nós". É uma página de créditos. Eu sei que o readme já faz algo assim, mas penso nessa página para o "usuário comum". Pessoas leigas em Github</li>
+  <li><a href="index.html">index.html</a>: Onde faz as operações básicas e o conjugado de números complexos em sua forma retangular ou algébrica (era pra ser basi1 por ser com operações básicas mas se não o github redirecionava pro readme)</li>
+  <li><a href="basi2">basi2.html</a>: Onde faz as operações de números complexos em sua forma trigonométrica ou apolar</li>
+  <li><a href="gauss.html">gauss.html</a>: Representações gráficas no plano de Argand Gauss</li>
+  <li><a href="geomet.html">geomet.html</a>: Geometria analítica com números complexos (ainda não sei como colocar em prática)</li>
+  <li><a href="algtrigo.html">algtrigo.html</a>: Conversão de números complexos da forma algébrica para a trigonométrica e vice-versa</li>
+  <li><a href="about.html">about.html</a>: "Sobre nós". É uma página de créditos. Eu sei que o readme já faz algo assim, mas penso nessa página para o "usuário comum". Pessoas leigas em Github</li>
 </ul>
