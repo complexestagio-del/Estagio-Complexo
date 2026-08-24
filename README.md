@@ -4,7 +4,8 @@
 WIP (work in progress, não está pronto)<br>
 <h2>O que cada arquivo é</h2>
 <ul>Estagio-Complexo:
-  <li>index.html: A "página inicial". Onde faz as operações básicas e o conjugado de números complexos</li>
+  <li>basi1: Onde faz as operações básicas e o conjugado de números complexos em sua forma retangular ou algébrica</li>
+  <li>basi2: Onde faz as operações de números complexos em sua forma trigonométrica ou apolar</li>
   <li>gauss.html: Representações gráficas no plano de Argand Gauss</li>
   <li>geomet.html: Geometria analítica com números complexos (ainda não sei como colocar em prática)</li>
   <li>algtrigo.html: Conversão de números complexos da forma algébrica para a trigonométrica e vice-versa</li>
