@@ -195,47 +195,51 @@ class Resolucao {
 
 
 function calculaOperacao(op) {
-    //aqui são feitas as operações da classe NumeroComplexo para que seja integrada com o html
-    let z1 = new NumeroComplexo(
-        parseFloat(document.getElementById("aa").value), 
-        parseFloat(document.getElementById("ba").value)
-    );
-    let z2 = new NumeroComplexo(
-        parseFloat(document.getElementById("ab").value), 
-        parseFloat(document.getElementById("bb").value)
-    );
-    var resultado;
-    var calc = new Resolucao();
-    switch(op) {
-        case 'soma':
-            resultado = z1.somar(z2);
-            calc.gerarSoma(z1,z2,resultado);
-            break;
-        case 'subtracao':
-            resultado = z1.subtrair(z2);
-            calc.gerarSubtracao(z1,z2,resultado);
-            break;
-        case 'multiplicacao':
-            resultado = z1.multiplicar(z2);
-            calc.gerarMultiplicacao(z1,z2,resultado);
-            break;
-        case 'divisao':
-            resultado= z1.dividir(z2);
-            if(resultado === null){
-                document.getElementById("resultado").innerHTML="Não é possível dividir por 0";
-            }else{
-                calc.gerarDivisao(z1,z2,resultado);
+    if (isNaN(a)&&isNaN(b)){
+        return null;
+    }else{
+        //aqui são feitas as operações da classe NumeroComplexo para que seja integrada com o html
+        let z1 = new NumeroComplexo(
+            parseFloat(document.getElementById("aa").value), 
+            parseFloat(document.getElementById("ba").value)
+        );
+        let z2 = new NumeroComplexo(
+            parseFloat(document.getElementById("ab").value), 
+            parseFloat(document.getElementById("bb").value)
+        );
+        var resultado;
+        var calc = new Resolucao();
+        switch(op) {
+            case 'soma':
+                resultado = z1.somar(z2);
+                calc.gerarSoma(z1,z2,resultado);
                 break;
-            }
-            break;
-        case 'conjugadoA':
-            resultado=z1.conjugado();
-            calc.gerarConjugado(z1,resultado);
-            break;
-        case 'conjugadoB':
-            resultado=z2.conjugado();
-            calc.gerarConjugado(z2,resultado);
-            break;
+            case 'subtracao':
+                resultado = z1.subtrair(z2);
+                calc.gerarSubtracao(z1,z2,resultado);
+                break;
+            case 'multiplicacao':
+                resultado = z1.multiplicar(z2);
+                calc.gerarMultiplicacao(z1,z2,resultado);
+                break;
+            case 'divisao':
+                resultado= z1.dividir(z2);
+                if(resultado === null){
+                    document.getElementById("resultado").innerHTML="Não é possível dividir por 0";
+                }else{
+                    calc.gerarDivisao(z1,z2,resultado);
+                    break;
+                }
+                break;
+            case 'conjugadoA':
+                resultado=z1.conjugado();
+                calc.gerarConjugado(z1,resultado);
+                break;
+            case 'conjugadoB':
+                resultado=z2.conjugado();
+                calc.gerarConjugado(z2,resultado);
+                break;
+        }
     }
 }
 
@@ -257,17 +261,4 @@ function trocarValores(){// essa função troca completamente os valores de dois
     document.getElementById("ab").value=realTemporario;
     document.getElementById("bb").value=imaginarioTemporario;
     //eu alterei um pouco só pra ficar mais simples mesmo :)
-}
-
-function AG(){
-    //deve exibir um gráfico de argand gauss num elemento canvas
-    //para gauss.html e geomet.html
-}
-function add(){
-    //deve adicionar mais numeros complexos Z para representação gráfica
-    //para gauss.html e geomet.html (neste deve haver um limite de 6 operações, pode esconder o botão ou só exibir msg)
-}
-function altrigo(){
-    //deve realizar conversão dos números complexos da forma algébrica para a trigonométrica
-    //apenas para altrigo.html
 }

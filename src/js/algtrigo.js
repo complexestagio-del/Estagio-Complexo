@@ -7,14 +7,14 @@ function chent(forma){
     }
 }
 function convert(forma){
+    
     if (forma=='alg'){
         let a = document.getElementById('a').value;
         let b = document.getElementById('b').value;
-
         let mod = Math.sqrt( Math.pow(parseInt(a),2) + Math.pow(parseInt(b),2) );
 
         let theta = Math.atan(parseInt(b)/parseInt(a));
-        document.getElementById("output").innerHTML = mod+" [cos ("+theta+") + i.sen ("+theta+")]";
+        document.getElementById("output").innerHTML = mod+" [cos ("+theta.toFixed(2)+") + i.sen ("+theta.toFixed(2)+")]";
     }else{
         let theta = document.getElementById('anga').value;
         let mod = document.getElementById('moduloa').value;
