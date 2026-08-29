@@ -22,6 +22,18 @@ button{
   width:90px;
   justify-content: center;
 }
+select{
+  display: flex;
+  margin: 2px;
+  padding:2px;
+  line-height: 20px;
+  color: #333333;
+  cursor: pointer;
+  background-color: #ffffff;
+  border-color: rgb(88, 88, 88);
+  width:auto;
+  justify-content: center;
+}
 header{
   background-color: rgb(65, 146, 192);
   color:whitesmoke;
