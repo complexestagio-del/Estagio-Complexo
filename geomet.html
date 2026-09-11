@@ -22,21 +22,38 @@
      <div class="container mt-4">
         <h1>Geometria analítica e números complexos</h1>
         <div class="mt-4 col-lg-8" col-md-10 id="main">
-            <label>Entrada(s)</label><br>
+            <label>Quantidade de entradas:</label>
+            <select id="quant" onchange="entra(document.getElementById('quant').value)">
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+            <label>Entradas</label><br>
             <p>Z1=
-                <input type="number" id="">+
-                <input type="number" id="">× i
+                <input type="number" id="a1">+
+                <input type="number" id="b1">× i
             </p>
             <p>Z2=
-                <input type="number" id="">+
-                <input type="number" id="">× i
+                <input type="number" id="a2">+
+                <input type="number" id="b2">× i
             </p>
             <p>Z3=
-                <input type="number" id="">+
-                <input type="number" id="">× i
-            </p><!--Mínimo 3 operações, máximo 6-->
-            <button onclick="add()">+</button><!--aqui deve adicionar operações. o máximo deve ser 6
-            poderia talvez ou fazer o botão sumir ou mostrar uma mensagem-->
+                <input type="number" id="a3">+
+                <input type="number" id="b3">× i
+            </p>
+            <p id="z4">Z4=
+                <input type="number" id="a4">+
+                <input type="number" id="b4">× i
+            </p>
+            <p id="z5">Z5=
+                <input type="number" id="a5">+
+                <input type="number" id="b5">× i
+            </p>
+            <p id="z6">Z6=
+                <input type="number" id="a6">+
+                <input type="number" id="b6">× i
+            </p>
         </div>
         <canvas class="mt-4" id="ag" width="400" height="300" style="border:1px solid #000000;">    
         </canvas>
@@ -49,6 +66,6 @@
         </ul>
     </footer>
     <script src="https://unpkg.com/mathjs@15.2.0/lib/browser/math.js"></script>
-    <script src="src/js/calc.js"></script>
+    <script src="src/js/geomet.js"></script>
 </body>
 </html>

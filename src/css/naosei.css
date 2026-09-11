@@ -31,7 +31,7 @@ select{
   cursor: pointer;
   background-color: #ffffff;
   border-color: rgb(88, 88, 88);
-  width:auto;
+  width:95%;
   justify-content: center;
 }
 header{
@@ -89,4 +89,7 @@ label{
       background-color: rgb(11, 19, 24);
     }
   }
+}
+#z4,#z5,#z6{
+  display:none;
 }
