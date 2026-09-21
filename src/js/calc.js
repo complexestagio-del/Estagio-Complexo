@@ -231,11 +231,13 @@ function calculaOperacao(op) {
         case 'conjugadoA':
             resultado=z1.conjugado();
             calc.gerarConjugado(z1,resultado);
+            document.getElementById('ba').value = resultado.imaginario;
             break;
         case 'conjugadoB':
             resultado=z2.conjugado();
             calc.gerarConjugado(z2,resultado);
-            break;
+            document.getElementById('bb').value = resultado.imaginario;
+        break;
     }
 }
 
@@ -257,17 +259,4 @@ function trocarValores(){// essa função troca completamente os valores de dois
     document.getElementById("ab").value=realTemporario;
     document.getElementById("bb").value=imaginarioTemporario;
     //eu alterei um pouco só pra ficar mais simples mesmo :)
-}
-
-function AG(){
-    //deve exibir um gráfico de argand gauss num elemento canvas
-    //para gauss.html e geomet.html
-}
-function add(){
-    //deve adicionar mais numeros complexos Z para representação gráfica
-    //para gauss.html e geomet.html (neste deve haver um limite de 6 operações, pode esconder o botão ou só exibir msg)
-}
-function altrigo(){
-    //deve realizar conversão dos números complexos da forma algébrica para a trigonométrica
-    //apenas para altrigo.html
 }
