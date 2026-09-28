@@ -24,16 +24,17 @@
         <h1>Representação gráfica de números complexos</h1>
         <div class="mt-4 col-lg-8 col-md-10" id="main">
             <label>Entrada(s)</label><br>
-            <p>Z1=
-                <input type="number" id="">+
-                <input type="number" id="">× i
+            <p id="z1">Z1 =
+                <input type="number" id="a1"> +
+                <input type="number" id="b1"> × i
             </p>
-            <button onclick="add()">+</button><!--aqui é pra adicionar operações. não tem limite A PRINCÍPIO-->
         </div>
-        <canvas class="mt-4" id="ag" width="400" height="300" style="border:1px solid #000000;">    
-        </canvas>
-        <p><button onclick="upd8()">Atualizar</button></p>
-        
+        <button onclick="add()">+</button>
+        <!-- <button onclick="remove()">-</button> -->
+        <canvas class="mt-4" id="ag" width="500" height="400" style="border:1px solid #000000;"></canvas>
+        <p><button onclick="desenharGrafico(document.getElementById('a1').value,document.getElementById('b1').value)">Desenhar</button></p>
+        <p>Quadrante localizado: <span id="quad"></span></p>
+        <p for="modulo">Módulo: <span id="modulo"></span></p>
     </div>
     <footer class="footer mt-auto">
         <ul>
@@ -41,6 +42,6 @@
         </ul>
     </footer>
     <script src="https://unpkg.com/mathjs@15.2.0/lib/browser/math.js"></script>
-    <script src="src/js/calc.js"></script>
+    <script src="src/js/graph.js"></script>
 </body>
 </html>
