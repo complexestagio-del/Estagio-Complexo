@@ -10,7 +10,6 @@
 <body>
     <header class="header pb-4">
         <h1 class="h1 ">Calculadora complexa</h1>
-        <!-- menu -->
         <ul>
             <li><a href="index.html">Operações básicas na forma algébrica</a></li>
             <li><a href="basi2.html">Operações básicas na forma polar</a></li>
@@ -30,15 +29,15 @@
                 <option value="6">6</option>
             </select>
             <label>Entradas</label><br>
-            <p>Z1=
+            <p id="z1">Z1=
                 <input type="number" id="a1">+
                 <input type="number" id="b1">× i
             </p>
-            <p>Z2=
+            <p id="z2">Z2=
                 <input type="number" id="a2">+
                 <input type="number" id="b2">× i
             </p>
-            <p>Z3=
+            <p id="z3">Z3=
                 <input type="number" id="a3">+
                 <input type="number" id="b3">× i
             </p>
@@ -55,10 +54,8 @@
                 <input type="number" id="b6">× i
             </p>
         </div>
-        <canvas class="mt-4" id="ag" width="400" height="300" style="border:1px solid #000000;">    
-        </canvas>
-        <!--gráfico de AG-->
-        <p><button onclick="">Atualizar</button></p> <!--Botao pra atualizar/reescrever o gráfico-->
+        <canvas class="mt-4" id="ag" width="500" height="400" style="border:1px solid #000000;"></canvas>
+        <p><button onclick="desenharGrafico(document.getElementById('a1').value,document.getElementById('b1').value)">Desenhar</button></p>
     </div>
     <footer class="footer mt-auto">
         <ul>
@@ -67,5 +64,6 @@
     </footer>
     <script src="https://unpkg.com/mathjs@15.2.0/lib/browser/math.js"></script>
     <script src="src/js/geomet.js"></script>
+    <script src="src/js/graph.js"></script>
 </body>
 </html>

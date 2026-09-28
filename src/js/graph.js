@@ -33,12 +33,15 @@ function calcularModulo(real, imaginario) {
 function calcularArgumento(real, imaginario) {
     // O numero 0 + 0i nao possui argumento definido
     if (real === 0 && imaginario === 0) {
+        document.getElementById('angulo').innerHTML = 'Não há';
         return null;
     }
     const argumentoRadianos =
-        Math.atan2(imaginario, real);
+    Math.atan2(imaginario, real);
     const argumentoGraus =
-        argumentoRadianos * 180 / Math.PI;
+    argumentoRadianos * 180 / Math.PI;
+    document.getElementById('anguloGraus').innerHTML = argumentoGraus;
+    document.getElementById('anguloRad').innerHTML = argumentoRadianos;
     return argumentoGraus;
 }
 // DESCOBRE O QUADRANTE
