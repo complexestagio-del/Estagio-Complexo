@@ -90,6 +90,12 @@ label{
     }
   }
 }
-#z4,#z5,#z6{
+#h4,#h5,#h6{
   display:none;
 }
+/* canvas{
+  border:1px solid;
+  border-color: #000;
+  width: 500px;
+  height: 400px;
+} */

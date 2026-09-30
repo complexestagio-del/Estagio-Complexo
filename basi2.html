@@ -13,21 +13,21 @@
         <!-- menu -->
         <ul>
             <li><a href="index.html">Operações básicas na forma algébrica</a></li>
-            <li><a href="basi2.html">Operações básicas na forma polar</a></li>
+            <li><a href="basi2.html">Operações básicas na forma trigonométrica</a></li>
             <li><a href="gauss.html">Representação gráfica</a></li>
             <li><a href="geomet.html">Geometria analítica</a></li>
             <li><a href="algtrigo.html">Conversão de formas</a></li>
         </ul>
     </header>
     <div class="container mt-4">
-        <h1>Operações básicas de nºs complexos polares</h1>
+        <h1>Operações básicas de nºs complexos trigonométricos</h1>
         <div class="mt-4 d-flex justify-content-between bg-secondary" id="main">
             <div id="opA" class="col-4 p-2 border border-dark">
                 <label>ZA =
                     <input type="number" id="moduloa"> × [cos(<span id="anga">θ</span>) + i × sen(<span id="anga">θ</span>)]
                 </label>
-                <p>Ângulo: <input type="number" id="anga_put"></p>
-                <!--Para alterar o θ aperta enter-->
+                <p>Ângulo: <input type="number" id="anga_put" onchange="muda(document.getElementById('anga_put').value)"></p>
+                <p><button class="mt-4" onclick="calc('conjugadoA')">Conjugado</button></p>
             </div>
             <div id="op" class="p-3 pt-2 border border-dark">
                 <label>Operações:</label>
@@ -43,7 +43,8 @@
                 <label>ZB =
                     <input type="number" id="modulob"> × [cos(<span id="angb">θ</span>) + i × sen(<span id="angb">θ</span>)]
                 </label>
-                <p>Ângulo: <input type="number" id="angb_put"></p>
+                <p>Ângulo: <input type="number" id="angb_put" onchange="muda(document.getElementById('angb_put').value)"></p>
+                <p><button class="mt-4" onclick="calc('conjugadoB')">Conjugado</button></p>
               <!--Para alterar o θ aperta enter ou algo assim-->
             </div>
         </div>
@@ -58,6 +59,6 @@
         </ul>
     </footer>
     <script src="https://unpkg.com/mathjs@15.2.0/lib/browser/math.js"></script>
-    <script src="src/js/calc.js"></script>
+    <script src="src/js/calc2.js"></script>
 </body>
 </html>

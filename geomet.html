@@ -12,7 +12,7 @@
         <h1 class="h1 ">Calculadora complexa</h1>
         <ul>
             <li><a href="index.html">Operações básicas na forma algébrica</a></li>
-            <li><a href="basi2.html">Operações básicas na forma polar</a></li>
+            <li><a href="basi2.html">Operações básicas na forma trigonométrica</a></li>
             <li><a href="gauss.html">Representação gráfica</a></li>
             <li><a href="geomet.html">Geometria analítica</a></li>
             <li><a href="algtrigo.html">Conversão de formas</a></li>
@@ -41,18 +41,24 @@
                 <input type="number" id="a3">+
                 <input type="number" id="b3">× i
             </p>
-            <p id="z4">Z4=
-                <input type="number" id="a4">+
-                <input type="number" id="b4">× i
-            </p>
-            <p id="z5">Z5=
-                <input type="number" id="a5">+
-                <input type="number" id="b5">× i
-            </p>
-            <p id="z6">Z6=
-                <input type="number" id="a6">+
-                <input type="number" id="b6">× i
-            </p>
+            <div id="h4">
+                <p id="z4">Z4=
+                    <input type="number" id="a4">+
+                    <input type="number" id="b4">× i
+                </p>
+            </div>
+            <div id="h5">
+                <p id="z5">Z5=
+                    <input type="number" id="a5">+
+                    <input type="number" id="b5">× i
+                </p>
+            </div>
+            <div id="h6">
+                <p id="z6">Z6=
+                    <input type="number" id="a6">+
+                    <input type="number" id="b6">× i
+                </p>
+            </div>
         </div>
         <canvas class="mt-4" id="ag" width="500" height="400" style="border:1px solid #000000;"></canvas>
         <p><button onclick="desenharGrafico(document.getElementById('a1').value,document.getElementById('b1').value)">Desenhar</button></p>

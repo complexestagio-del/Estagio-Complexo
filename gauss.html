@@ -13,13 +13,12 @@
         <!-- menu -->
         <ul>
             <li><a href="index.html">Operações básicas na forma algébrica</a></li>
-            <li><a href="basi2.html">Operações básicas na forma polar</a></li>
+            <li><a href="basi2.html">Operações básicas na forma trigonométrica</a></li>
             <li><a href="gauss.html">Representação gráfica</a></li>
             <li><a href="geomet.html">Geometria analítica</a></li>
             <li><a href="algtrigo.html">Conversão de formas</a></li>
         </ul>
     </header>
-    <!-- Representação gráfica -->
     <div class="container mt-4">
         <h1>Representação gráfica de números complexos</h1>
         <div class="mt-4 col-lg-8 col-md-10" id="main">
@@ -30,7 +29,7 @@
             </p>
         </div>
         <button onclick="add()">+</button>
-        <!-- <button onclick="remove()">-</button> -->
+        <button onclick="remove()">-</button>
         <canvas class="mt-4" id="ag" width="500" height="400" style="border:1px solid #000000;"></canvas>
         <p><button onclick="desenharGrafico(document.getElementById('a1').value,document.getElementById('b1').value)">Desenhar</button></p>
         <p>Quadrante localizado: <span id="quad"></span></p>
@@ -46,7 +45,7 @@
             <li><a href="about.html">Sobre nós</a></li>
         </ul>
     </footer>
-    <script src="https://unpkg.com/mathjs@15.2.0/lib/browser/math.js"></script>
+    <script src="src/js/CNum.js"></script>
     <script src="src/js/graph.js"></script>
 </body>
 </html>
