@@ -251,10 +251,9 @@ function desenharGrafico(real, imaginario) {
             ctx.fillText(formatarNumero(-valor), centroX + 8, yNegativo);
         }
     }
-
+    
     // CRIA O VETOR
-    const vetor =
-        criarVetor(real, imaginario);
+    const vetor =criarVetor(real, imaginario);
     // CONVERTE PARA COORDENADAS DO CANVAS
     const pontoX = centroX + vetor.ponto.x * escala;
     const pontoY = centroY - vetor.ponto.y * escala;
@@ -320,4 +319,11 @@ function desenharGrafico(real, imaginario) {
         escala: escala
     };
     return resultado;
+}
+function draw(){
+    const real=[];
+    const ima=[];
+    for (i=0;i<contador;i++){
+        real[0]=r
+    }
 }

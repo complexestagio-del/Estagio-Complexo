@@ -24,11 +24,10 @@
         <div class="mt-4 d-flex justify-content-between bg-secondary" id="main">
             <div id="opA" class="col-4 p-2 border border-dark">
                 <label>ZA =
-                    <input type="number" id="moduloa"> × [cos(<span id="anga">θ</span>) + i × sen(<span id="anga">θ</span>)]
+                    <input type="number" id="moduloa"> × [cos(θ) + i × sen(θ)]
                 </label>
-                <p>Ângulo: <input type="number" id="anga_put" onchange="muda(document.getElementById('anga_put').value)"></p>
-                <p><button class="mt-4" onclick="calc('conjugadoA')">Conjugado</button></p>
-            </div>
+                <p>Ângulo: <input type="number" id="anga_put"></p>
+                </div>
             <div id="op" class="p-3 pt-2 border border-dark">
                 <label>Operações:</label>
                 <div class="p-1">
@@ -41,11 +40,9 @@
             </div>
             <div id="opB" class="col-4 p-2 border border-dark">
                 <label>ZB =
-                    <input type="number" id="modulob"> × [cos(<span id="angb">θ</span>) + i × sen(<span id="angb">θ</span>)]
+                    <input type="number" id="modulob"> × [cos(θ) + i × sen(θ)]
                 </label>
-                <p>Ângulo: <input type="number" id="angb_put" onchange="muda(document.getElementById('angb_put').value)"></p>
-                <p><button class="mt-4" onclick="calc('conjugadoB')">Conjugado</button></p>
-              <!--Para alterar o θ aperta enter ou algo assim-->
+                <p>Ângulo: <input type="number" id="angb_put"></p>
             </div>
         </div>
         <div class="mt-3">
