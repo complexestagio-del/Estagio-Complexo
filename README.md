@@ -9,5 +9,5 @@ WIP (work in progress, não está pronto)<br>
   <li><a href="gauss.html">gauss.html</a>: Representações gráficas no plano de Argand Gauss</li>
   <li><a href="geomet.html">geomet.html</a>: Geometria analítica com números complexos (ainda não sei como colocar em prática)</li>
   <li><a href="algtrigo.html">algtrigo.html</a>: Conversão de números complexos da forma algébrica para a trigonométrica e vice-versa</li>
-  <li><a href="about.html">about.html</a>: "Sobre nós". É uma página de créditos. Eu sei que o readme já faz algo assim, mas penso nessa página para o "usuário comum". Pessoas leigas em Github</li>
+  <li><a href="about.html">about.html</a>: "Sobre nós". É uma página de créditos. Eu sei que o readme já faz algo assim, mas penso nessa página para o "usuário comum" (pessoas leigas em Github)</li>
 </ul>

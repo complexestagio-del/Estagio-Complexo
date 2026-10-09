@@ -3,6 +3,7 @@ body{
   flex-direction: column;
   min-height: 100vh;
   background-color:whitesmoke;
+  font-size: 17px;
 }
 .container{
   flex:1 0 auto;
@@ -45,7 +46,7 @@ header{
     margin:  10px;
     display:inline-block;
     a{
-      font-size:17px;
+      font-size:18px;
       padding:7px 9px;
       border-radius:5%;
       text-decoration: none;
@@ -62,7 +63,7 @@ input[type="number"]{
 label{
   font-size:16px;
 }
-#main{
+.main{
   font-weight: bold;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   color:whitesmoke;

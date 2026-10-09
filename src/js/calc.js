@@ -57,25 +57,25 @@ class Resolucao {
     gerarSoma(numero1, numero2, resultado) {
         const linhas = [];
         // Primeira linha: mostra a operação
-        linhas.push(`(${numero1.mostrar()}) + (${numero2.mostrar()})`);
+        linhas.push(`(${numero1.mostrar()}) + (${numero2.mostrar()}): <br>`);
         // Segunda linha: mostra como a soma é feita
-        linhas.push(`= <br> (${numero1.real} + ${numero2.real}) + (${numero1.imaginario} + ${numero2.imaginario})i`);
+        linhas.push(`(${numero1.real} + ${numero2.real}) + (${numero1.imaginario} + ${numero2.imaginario})i`);
         // Terceira linha: mostra o resultado final
-        linhas.push(`=<br> ${resultado.mostrar()}`);
+        linhas.push(`<br> ZA + ZB = ${resultado.mostrar()}`);
         document.getElementById("resultado").innerHTML=linhas;
     }
 
     gerarSubtracao(numero1, numero2, resultado) {
         const linhas = [];
         linhas.push(
-            `(${numero1.mostrar()}) - (${numero2.mostrar()})`
+            `(${numero1.mostrar()}) - (${numero2.mostrar()}): <br>`
         );
         linhas.push(
-            `= <br>(${numero1.real} - (${numero2.real})) + ` +
+            `(${numero1.real} - (${numero2.real})) + ` +
             `(${numero1.imaginario} - (${numero2.imaginario}))i`
         );
         linhas.push(
-            `= <br>${resultado.mostrar()}`
+            `<br> ZA - ZB = ${resultado.mostrar()}`
         );
         document.getElementById("resultado").innerHTML=linhas;
     }
@@ -88,7 +88,7 @@ class Resolucao {
         const termoComIQuadrado = numero1.imaginario * numero2.imaginario;
         // Mostra a multiplicação original
         linhas.push(
-            `(${numero1.mostrar()}) × (${numero2.mostrar()})`
+            `(${numero1.mostrar()}) × (${numero2.mostrar()}):`
         );
         // Mostra a propriedade distributiva
         linhas.push(
@@ -118,7 +118,7 @@ class Resolucao {
         );
         // Mostra o resultado final
         linhas.push(
-            `= <br>${resultado.mostrar()}`
+            `<br> ZA × ZB = ${resultado.mostrar()}`
         );
         document.getElementById("resultado").innerHTML=linhas;
     }
@@ -128,25 +128,17 @@ class Resolucao {
             linhas.push("Não é possível dividir por zero.");
             document.getElementById("resultado").innerHTML=linhas.join('<br>');
             return;
-        } else
+        }
         var conjugadoDivisor = numero2.conjugado();
-        const denominador =
-            (numero2.real ** 2) +
-            (numero2.imaginario ** 2);
-        const numeradorReal =
-            (numero1.real * numero2.real) +
-            (numero1.imaginario * numero2.imaginario);
-        const numeradorImaginario =
-            (numero1.imaginario * numero2.real) -
-            (numero1.real * numero2.imaginario);
+        const denominador = (numero2.real ** 2) + (numero2.imaginario ** 2);
+        const numeradorReal = (numero1.real * numero2.real) + (numero1.imaginario * numero2.imaginario);
+        const numeradorImaginario = (numero1.imaginario * numero2.real) - (numero1.real * numero2.imaginario);
         // Mostra a divisão original
-        linhas.push(
-            `(${numero1.mostrar()}) ÷ (${numero2.mostrar()})`
-        );
+        linhas.push( `(${numero1.mostrar()}) ÷ (${numero2.mostrar()}): <br>` );
         // Multiplica o numerador e o denominador
         // pelo conjugado do divisor
         linhas.push(
-            `= <br>[(${numero1.mostrar()}) × ` +
+            `[(${numero1.mostrar()}) × ` +
             `(${conjugadoDivisor.mostrar()})] / ` +
             `[(${numero2.mostrar()}) × ` +
             `(${conjugadoDivisor.mostrar()})]`
@@ -171,7 +163,7 @@ class Resolucao {
         );
         // Mostra o resultado final
         linhas.push(
-            `= <br>${resultado.mostrar()}`
+            `<br> ZA / ZB = ${resultado.mostrar()}`
         );
         document.getElementById("resultado").innerHTML=linhas;
     }

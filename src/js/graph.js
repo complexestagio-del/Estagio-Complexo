@@ -7,11 +7,17 @@ function add() {
     novaexpressao.id = "z" + contador;
     novaexpressao.innerHTML = `Z${contador} = <input type="number" id="a${contador}"> + <input type="number" id="b${contador}">× i `;
     main.appendChild(novaexpressao);
+    if (contador == 6) {
+        document.getElementById('add').style.display = 'none';
+    }
 }
 function remove() {
     const main = document.getElementById('main');
     main.removeChild(document.getElementById('z' + contador));
     contador--;
+    if (contador < 6) {
+        document.getElementById('add').style.display = 'block';
+    }
 }
 
 // CRIACAO DO PONTO
@@ -51,10 +57,8 @@ function calcularArgumento(real, imaginario) {
         document.getElementById('angulo').innerHTML = 'Não há';
         return null;
     }
-    const argumentoRadianos =
-        Math.atan2(imaginario, real);
-    const argumentoGraus =
-        argumentoRadianos * 180 / Math.PI;
+    const argumentoRadianos = Math.atan2(imaginario, real);
+    const argumentoGraus = argumentoRadianos * 180 / Math.PI;
     document.getElementById('anguloGraus').innerHTML = argumentoGraus;
     document.getElementById('anguloRad').innerHTML = argumentoRadianos;
     return argumentoGraus;
@@ -87,41 +91,26 @@ function calcularIntervalo(maiorValor) {
         return 1;
     }
     // Queremos aproximadamente 5 divisoes
-    const intervaloInicial =
-        maiorValor / 5;
+    const intervaloInicial = maiorValor / 5;
     // Descobre a ordem de grandeza
-    const potencia =
-        10 ** Math.floor(
-            Math.log10(intervaloInicial)
-        );
-    const valorNormalizado =
-        intervaloInicial / potencia;
-
+    const potencia = 10 ** Math.floor(Math.log10(intervaloInicial));
+    const valorNormalizado = intervaloInicial / potencia;
     let intervalo;
-
     if (valorNormalizado <= 1) {
-
         intervalo = 1;
-
     } else if (valorNormalizado <= 2) {
-
         intervalo = 2;
-
     } else if (valorNormalizado <= 5) {
-
         intervalo = 5;
-
     } else {
-
         intervalo = 10;
     }
-
     return intervalo * potencia;
 }
 // FORMATA NUMEROS DOS EIXOS
 function formatarNumero(valor) {
     // Evita valores como 0.30000000004
-    const arredondado = Number(valor.toFixed(10));
+    const arredondado = Number(valor.toFixed(4));
     return arredondado;
 }
 // DESENHA A PONTA DA SETA
@@ -136,40 +125,27 @@ function desenharSeta(ctx, inicioX, inicioY, fimX, fimY) {
     ctx.stroke();
 }
 // DESENHA O GRAFICO
-function desenharGrafico(real, imaginario) {
-    // Converte os valores recebidos para numero
-    real = Number(real);
-    imaginario = Number(imaginario);
-    const canvas = document.getElementById("ag");
-
-    // VALIDACAO
-    if (!Number.isFinite(real) || !Number.isFinite(imaginario)) {
-        console.log("Digite valores numericos validos.");
-        return null;
-    }
-    if (!canvas) {
-        console.log("Canvas nao encontrado.");
-        return null;
-    }
-    const ctx = canvas.getContext("2d");
-
-    // Limpa o grafico anterior
+function desenharGrafico() {
+    let real = [];
+    let imaginario = [];
+    const canvas = document.getElementById('ag');
+    const ctx = canvas.getContext('2d');
+    let maiorValor = 0;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // CENTRO DO PLANO
-    const centroX = canvas.width / 2;
-    const centroY = canvas.height / 2;
-    // DESCOBRE O TAMANHO NECESSARIO DO PLANO
-    const maiorValor = Math.max(Math.abs(real), Math.abs(imaginario));
+    for (i = 0; i < contador; i++) {
+        real[i] = Number(document.getElementById('a' + (i + 1)).value);
+        imaginario[i] = Number(document.getElementById('b' + (i + 1)).value);
+        maiorValor = Math.max(maiorValor, Math.abs(real[i]), Math.abs(imaginario[i]));
+    }
     const intervalo = calcularIntervalo(maiorValor);
-    // Garante espaco alem do ponto
     let limite = Math.ceil(maiorValor / intervalo) * intervalo;
-    // Se for 0 + 0i
     if (limite === 0) {
         limite = 5;
     }
-    // Acrescenta uma divisao de margem
     limite += intervalo;
+    // CENTRO DO PLANO
+    const centroX = canvas.width / 2;
+    const centroY = canvas.height / 2;
     // ESCALA AUTOMATICA
     const margem = 50;
     const espacoX = centroX - margem;
@@ -177,11 +153,9 @@ function desenharGrafico(real, imaginario) {
     const escalaX = espacoX / limite;
     const escalaY = espacoY / limite;
     const escala = Math.min(escalaX, escalaY);
-
     // CONFIGURACOES DO TEXTO
     ctx.font = "11px Arial";
     ctx.textBaseline = "middle";
-
     // EIXO REAL
     ctx.beginPath();
     ctx.moveTo(margem / 2, centroY);
@@ -195,7 +169,6 @@ function desenharGrafico(real, imaginario) {
     ctx.lineTo(canvas.width - margem / 2 - 10, centroY + 5);
     ctx.stroke();
     ctx.fillText("R", canvas.width - margem, centroY - 15);
-
     // EIXO IMAGINARIO
     ctx.beginPath();
     ctx.moveTo(centroX, canvas.height - margem / 2);
@@ -251,79 +224,71 @@ function desenharGrafico(real, imaginario) {
             ctx.fillText(formatarNumero(-valor), centroX + 8, yNegativo);
         }
     }
-    
-    // CRIA O VETOR
-    const vetor =criarVetor(real, imaginario);
-    // CONVERTE PARA COORDENADAS DO CANVAS
-    const pontoX = centroX + vetor.ponto.x * escala;
-    const pontoY = centroY - vetor.ponto.y * escala;
-    // DESENHA O VETOR
-    if (real !== 0 || imaginario !== 0) {
+    //cria os vetores
+    let vetor = [];
+    let texto = [];
+    const pontoX = [];
+    const pontoY = [];
+    for (i = 0; i < contador; i++) {
+        vetor[i] = criarVetor(real[i], imaginario[i]);
+        pontoX[i] = centroX + vetor[i].ponto.x * escala;
+        pontoY[i] = centroY - vetor[i].ponto.y * escala;
+        if (real[i] !== 0 || imaginario[i] !== 0) {//desenha o vetor
+            ctx.beginPath();
+            ctx.moveTo(centroX, centroY);
+            ctx.lineTo(pontoX[i], pontoY[i]);
+            ctx.stroke();
+            desenharSeta(ctx, centroX, centroY, pontoX[i], pontoY[i]);
+        }
+        // DESENHA O PONTO
         ctx.beginPath();
-        ctx.moveTo(centroX, centroY);
-        ctx.lineTo(pontoX, pontoY);
-        ctx.stroke();
-        desenharSeta(ctx, centroX, centroY, pontoX, pontoY);
+        ctx.arc(pontoX[i], pontoY[i], 5, 0, 2 * Math.PI);
+        ctx.fill();
+        // MONTA O TEXTO DO NUMERO COMPLEXO
+        if (imaginario[i] < 0) {
+            texto[i] = real[i] + " - " + Math.abs(imaginario[i]) + "i";
+        } else {
+            texto[i] = real[i] + " + " + imaginario[i] + "i";
+        }
+        // POSICAO DO TEXTO
+        let textoX = pontoX[i] + 10;
+        let textoY = pontoY[i] - 15;
+        // Evita sair pela direita
+        if (pontoX[i] > canvas.width - 120) {
+            textoX = pontoX[i] - 100;
+        }
+        // Evita sair pela esquerda
+        if (pontoX[i] < 100) {
+            textoX = pontoX[i] + 10;
+        }
+        // Evita sair por cima
+        if (pontoY[i] < 40) {
+            textoY = pontoY[i] + 20;
+        }
+        // Evita sair por baixo
+        if (pontoY[i] > canvas.height - 40) {
+            textoY = pontoY[i] - 20;
+        }
+        ctx.fillText(texto[i], textoX, textoY);
+        //calculos finais:
+        const modulo = [];
+        modulo[i] = calcularModulo(real[i], imaginario[i]);
+        const argumento = [];
+        argumento[i] = calcularArgumento(real[i], imaginario[i]);
+        const quadrante = [];
+        quadrante[i] = descobrirQuadrante(real[i], imaginario[i]);
+        let resultado = [];
+        resultado[i] = {
+            real: real[i],
+            imaginario: imaginario[i],
+            ponto: vetor[i].ponto,
+            vetor: vetor[i],
+            modulo: Number(modulo[i].toFixed(2)),
+            argumento: argumento === null ? null : Number(argumento).toFixed(2),
+            quadrante: quadrante[i],
+            intervalo: intervalo,
+            escala: escala
+        };
     }
-    // DESENHA O PONTO
-    ctx.beginPath();
-    ctx.arc(pontoX, pontoY, 5, 0, 2 * Math.PI);
-    ctx.fill();
-    // MONTA O TEXTO DO NUMERO COMPLEXO
-    let texto;
-    if (imaginario < 0) {
-        texto = real + " - " + Math.abs(imaginario) + "i";
-    } else {
-        texto = real + " + " + imaginario + "i";
-    }
-    // POSICAO DO TEXTO
-    let textoX = pontoX + 10;
-    let textoY = pontoY - 15;
-    // Evita sair pela direita
-    if (pontoX > canvas.width - 120) {
-        textoX = pontoX - 100;
-    }
-    // Evita sair pela esquerda
-    if (pontoX < 100) {
-        textoX = pontoX + 10;
-    }
-    // Evita sair por cima
-    if (pontoY < 40) {
-        textoY = pontoY + 20;
-    }
-    // Evita sair por baixo
-    if (pontoY > canvas.height - 40) {
-        textoY = pontoY - 20;
-    }
-    ctx.fillText(texto, textoX, textoY
-    );
-    // CALCULOS FINAIS
-    const modulo = calcularModulo(real, imaginario);
-    const argumento = calcularArgumento(real, imaginario);
-    const quadrante = descobrirQuadrante(real, imaginario);
-    // TRATA O ARGUMENTO
-    let argumentoFinal = null;
-    if (argumento !== null) {
-        argumentoFinal = Number(argumento.toFixed(2));
-    }
-    // RESULTADO FINAL
-    const resultado = {
-        real: real,
-        imaginario: imaginario,
-        ponto: vetor.ponto,
-        vetor: vetor,
-        modulo: Number(modulo.toFixed(2)),
-        argumento: argumentoFinal,
-        quadrante: quadrante,
-        intervalo: intervalo,
-        escala: escala
-    };
     return resultado;
-}
-function draw(){
-    const real=[];
-    const ima=[];
-    for (i=0;i<contador;i++){
-        real[0]=r
-    }
 }
