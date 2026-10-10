@@ -56,8 +56,16 @@
             <p id="resultado"></p>
         </div>
         <h2>Multiplicações:</h2>
-        <div class="mt-4 d-flex justify-content-between bg-secondary main">
-            <p class="p-2">Z = <input type="number" id="aa"> + <input type="number" id="ba"> × i</p>
+        <div class="mt-4 d-flex justify-content-between bg-secondary main border border-dark">
+            <p class="p-3">Z = <input type="number" id="a"> + <input type="number" id="b"> × i</p>
+            <p class="p-3">
+                Valor para multiplicar: <input type='number' id="valor"><br>
+                <button class="mt-2" onclick="multiplica(document.getElementById('a').value,document.getElementById('b').value,document.getElementById('valor').value)">Multiplicar</button>
+            </p>
+        </div>
+        <div class="mt-3">
+            <p>RESULTADO:</p>
+            <p id="multi"></p>
         </div>
     </div>
     <footer class="footer mt-auto">
