@@ -3,13 +3,18 @@ function chent(forma){
         document.getElementById("put").innerHTML = "Z = <input type='number' id='a'>+<input type='number' id='b'>× i<br>";
     }
     else{
-        document.getElementById("put").innerHTML = "Z = <input type='number' id='moduloa'> × [cos(<span id='anga'>θ</span>) + i × sen(<span id='anga'>θ</span>)] <br> <label>Ângulo:</label> <input type='number' id='anga_put'>";
+        document.getElementById("put").innerHTML = '<label>ZB = <input type="number" id="modulo"> × [cos(θ) + i × sen(θ)] </label> <p>Ângulo: <input type="number" id="ang_put"></p>';
     }
 }
 function calcularModulo(real, imaginario) {
     const somaQuadrado = real ** 2 + imaginario ** 2;
     const modulo = Math.sqrt(somaQuadrado);
-    return modulo;
+    return formatarNumero(modulo);
+}
+function formatarNumero(valor) {
+    // Evita valores como 0.30000000004
+    const arredondado = Number(valor.toFixed(4));
+    return arredondado;
 }
 // CALCULO DO ARGUMENTO
 function calcularArgumento(real, imaginario) {
@@ -19,22 +24,23 @@ function calcularArgumento(real, imaginario) {
     }
     const argumentoRadianos = Math.atan2(imaginario, real);
     const argumentoGraus = argumentoRadianos * 180 / Math.PI;
-    return argumentoGraus;
+    return formatarNumero(argumentoGraus);
 }
 function convert(forma){
-    if (forma=='alg'){
-        let a = document.getElementById('a').value;
-        let b = document.getElementById('b').value;
+    if (forma==='alg'){
+        const a = document.getElementById('a').value;
+        const b = document.getElementById('b').value;
 
-        let mod = calcularModulo(a,b);
-        let theta = calcularArgumento(a,b);
-        document.getElementById("output").innerHTML = mod+" [cos ("+theta+") + i.sen ("+theta+")]";
+        const mod = calcularModulo(a,b);
+        const theta = calcularArgumento(a,b);
+        document.getElementById("output").innerHTML = mod+" × [cos ("+theta+") + i × sen ("+theta+")]";
     }else{
-        let theta = document.getElementById('anga').value;
-        let mod = document.getElementById('moduloa').value;
+        const theta = Number(document.getElementById('ang_put').value);
+        const mod = Number(document.getElementById('modulo').value);
 
-        let a = mod * Math.cos(theta);
-        let b = mod * Math.sin(theta);
-        document.getElementById('output').innerHTML= a +" + "+ b +"× i";
+        const a = formatarNumero(mod * Math.cos(theta*(Math.PI/180)));
+        const b = formatarNumero(mod * Math.sin(theta*(Math.PI/180)));
+
+        document.getElementById('output').innerHTML= a +" + "+ b +" × i";
     }
 }

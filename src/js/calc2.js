@@ -13,7 +13,7 @@ class cn {
             return null;
         }
         const mr = parseFloat(this.modulo) / parseFloat(z2.modulo);
-        const ar = parseFloat(this.arg) - parseFloat(z2.arg);
+        let ar = parseFloat(this.arg) - parseFloat(z2.arg);
         return new cn(ar, mr.toFixed(3));
     }
     formar() {
@@ -34,15 +34,19 @@ class Resolucao {
         Módulo: ${z1.modulo} × ${z2.modulo} = ${resultado.modulo}<br>
         Argumento: ${z1.arg} + ${z2.arg} = ${resultado.arg}<br>
         ZA × ZB = ${resultado.formar()}`);
-        document.getElementById("resultado").innerHTML=linhas;
+        document.getElementById("resultado").innerHTML=linhas.join("");
     }
     dividir(z1, z2, resultado) {
         const linhas = [];
         linhas.push(`{ ${z1.formar()} / ${z2.formar()} }: <br>
         Módulo: ${z1.modulo} / ${z2.modulo} = ${resultado.modulo}<br>
-        Argumento: ${z1.arg} - ${z2.arg} = ${resultado.arg}<br>
-        ZA / ZB = ${resultado.formar()}`);
-        document.getElementById("resultado").innerHTML=linhas;
+        Argumento: ${z1.arg} - ${z2.arg} = ${resultado.arg}`);
+        if(resultado.arg<0){
+            resultado.arg = 360 + resultado.arg;
+            linhas.push(`<br>Como o ângulo não pode ser negativo no círculo trigonométrico, diminuimos seu valor por 360, resultando ${resultado.arg}.`);
+        }
+        linhas.push(`<br>ZA / ZB = ${resultado.formar()}`);
+        document.getElementById("resultado").innerHTML=linhas.join("");
     }
 }
 
@@ -75,4 +79,5 @@ function trocarValores() {
     document.getElementById('anga_put').value = z2.arg;
     document.getElementById('modulob').value = z1.modulo;
     document.getElementById('angb_put').value = z1.arg;
+    alert("Os valores de ZA e ZB foram invertidos.");
 }

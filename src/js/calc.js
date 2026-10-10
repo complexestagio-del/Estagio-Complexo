@@ -1,3 +1,8 @@
+function formatarNumero(valor) {
+    // Evita valores como 0.30000000004
+    const arredondado = Number(valor).toFixed(4);
+    return arredondado;
+}
 class NumeroComplexo {
     constructor(real, imaginario){
            this.real = real;
@@ -5,8 +10,8 @@ class NumeroComplexo {
     }
 
     mostrar() {
-        const real = Number(this.real.toFixed(4));
-        const imaginario = Number(this.imaginario.toFixed(4));
+        const real = Number(formatarNumero(this.real));
+        const imaginario = Number(formatarNumero(this.imaginario));
         if (this.imaginario === 0) {// verifica se a parte imaginaria é igual a zero
             return `${real}`;
         }
@@ -62,22 +67,15 @@ class Resolucao {
         linhas.push(`(${numero1.real} + ${numero2.real}) + (${numero1.imaginario} + ${numero2.imaginario})i`);
         // Terceira linha: mostra o resultado final
         linhas.push(`<br> ZA + ZB = ${resultado.mostrar()}`);
-        document.getElementById("resultado").innerHTML=linhas;
+        document.getElementById("resultado").innerHTML=linhas.join("");
     }
 
     gerarSubtracao(numero1, numero2, resultado) {
         const linhas = [];
-        linhas.push(
-            `(${numero1.mostrar()}) - (${numero2.mostrar()}): <br>`
-        );
-        linhas.push(
-            `(${numero1.real} - (${numero2.real})) + ` +
-            `(${numero1.imaginario} - (${numero2.imaginario}))i`
-        );
-        linhas.push(
-            `<br> ZA - ZB = ${resultado.mostrar()}`
-        );
-        document.getElementById("resultado").innerHTML=linhas;
+        linhas.push(`(${numero1.mostrar()}) - (${numero2.mostrar()}): <br>`);
+        linhas.push(`(${numero1.real} - (${numero2.real})) + ` +`(${numero1.imaginario} - (${numero2.imaginario}))i`);
+        linhas.push(`<br> ZA - ZB = ${resultado.mostrar()}`);
+        document.getElementById("resultado").innerHTML=linhas.join("");
     }
 
     gerarMultiplicacao(numero1, numero2, resultado) {
@@ -87,16 +85,9 @@ class Resolucao {
         const segundoImaginario = numero1.imaginario * numero2.real;
         const termoComIQuadrado = numero1.imaginario * numero2.imaginario;
         // Mostra a multiplicação original
-        linhas.push(
-            `(${numero1.mostrar()}) × (${numero2.mostrar()}):`
-        );
+        linhas.push(`(${numero1.mostrar()}) × (${numero2.mostrar()}):`);
         // Mostra a propriedade distributiva
-        linhas.push(
-            `= <br>(${numero1.real} × ${numero2.real}) + ` +
-            `(${numero1.real} × ${numero2.imaginario})i + ` +
-            `(${numero1.imaginario} × ${numero2.real})i + ` +
-            `(${numero1.imaginario} × ${numero2.imaginario})i²`
-        );
+        linhas.push(`= <br>(${numero1.real} × ${numero2.real}) + ` +`(${numero1.real} × ${numero2.imaginario})i + ` +`(${numero1.imaginario} × ${numero2.real})i + ` +`(${numero1.imaginario} × ${numero2.imaginario})i²`);
         // Mostra o resultado de cada multiplicação
         linhas.push(
             `= <br>${primeiroReal} + ` +
@@ -117,10 +108,8 @@ class Resolucao {
             `(${primeiroImaginario} + (${segundoImaginario}))i`
         );
         // Mostra o resultado final
-        linhas.push(
-            `<br> ZA × ZB = ${resultado.mostrar()}`
-        );
-        document.getElementById("resultado").innerHTML=linhas;
+        linhas.push(`<br> ZA × ZB = ${resultado.mostrar()}`);
+        document.getElementById("resultado").innerHTML=linhas.join("");
     }
     gerarDivisao(numero1, numero2, resultado) {
         const linhas = [];
@@ -165,7 +154,7 @@ class Resolucao {
         linhas.push(
             `<br> ZA / ZB = ${resultado.mostrar()}`
         );
-        document.getElementById("resultado").innerHTML=linhas;
+        document.getElementById("resultado").innerHTML=linhas.join("");
     }
 
     gerarConjugado(numero, resultado) {
@@ -181,10 +170,9 @@ class Resolucao {
         linhas.push(
             `= <br>${resultado.mostrar()}`
         );
-        document.getElementById("resultado").innerHTML=linhas;
+        document.getElementById("resultado").innerHTML=linhas.join("");
     }
 }
-
 
 function calculaOperacao(op) {
     //aqui são feitas as operações da classe NumeroComplexo para que seja integrada com o html
@@ -235,8 +223,8 @@ function calculaOperacao(op) {
 
 function trocarValores(){// essa função troca completamente os valores de dois numeros complexos na pg inicial
     let z1 = new NumeroComplexo(
-    parseFloat(document.getElementById("aa").value), 
-    parseFloat(document.getElementById("ba").value)
+        parseFloat(document.getElementById("aa").value), 
+        parseFloat(document.getElementById("ba").value)
     );
     let z2 = new NumeroComplexo(
         parseFloat(document.getElementById("ab").value), 
@@ -251,4 +239,17 @@ function trocarValores(){// essa função troca completamente os valores de dois
     document.getElementById("ab").value=realTemporario;
     document.getElementById("bb").value=imaginarioTemporario;
     //eu alterei um pouco só pra ficar mais simples mesmo :)
+    alert("Os valores de ZA e ZB foram invertidos.");
+    //coloca um aviso, a pedido da prof suzi
+}
+
+function multiplica(a,b,valor){
+    if (valor==null||valor==NaN){
+        valor = 0;
+    }
+    let z = new NumeroComplexo(a, b);
+    let zr = new NumeroComplexo(a*valor,b*valor);
+    const linhas = [];
+    linhas.push(`(`+z.mostrar() +`) × ${valor}= <br> (${valor} × ${z.real}) + [ (${valor} × ${z.imaginario}) × i ] = <br>`+zr.mostrar());
+    document.getElementById("multi").innerHTML= linhas;
 }

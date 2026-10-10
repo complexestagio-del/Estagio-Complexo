@@ -47,7 +47,7 @@ function calcularModulo(real, imaginario) {
         real ** 2 + imaginario ** 2;
     const modulo =
         Math.sqrt(somaQuadrado);
-    document.getElementById('modulo').innerHTML = modulo;
+    // document.getElementById('modulo').innerHTML = modulo;
     return modulo;
 }
 // CALCULO DO ARGUMENTO
@@ -58,31 +58,34 @@ function calcularArgumento(real, imaginario) {
         return null;
     }
     const argumentoRadianos = Math.atan2(imaginario, real);
-    const argumentoGraus = argumentoRadianos * 180 / Math.PI;
-    document.getElementById('anguloGraus').innerHTML = argumentoGraus;
-    document.getElementById('anguloRad').innerHTML = argumentoRadianos;
+    let argumentoGraus = argumentoRadianos * 180 / Math.PI;
+    if (argumentoGraus<0){
+        argumentoGraus = 360 + argumentoGraus;
+    }
+    // document.getElementById('anguloGraus').innerHTML = formatarNumero(argumentoGraus);
+    // document.getElementById('anguloRad').innerHTML = formatarNumero(argumentoRadianos);
     return argumentoGraus;
 }
 // DESCOBRE O QUADRANTE
 function descobrirQuadrante(real, imaginario) {
     if (real > 0 && imaginario > 0) {
-        document.getElementById('quad').innerHTML = 'Primeiro';
+        // document.getElementById('quad').innerHTML = 'Primeiro';
         return 1;
     }
     if (real < 0 && imaginario > 0) {
-        document.getElementById('quad').innerHTML = "Segundo";
+        // document.getElementById('quad').innerHTML = "Segundo";
         return 2;
     }
     if (real < 0 && imaginario < 0) {
-        document.getElementById('quad').innerHTML = 'Terceiro';
+        // document.getElementById('quad').innerHTML = 'Terceiro';
         return 3;
     }
     if (real > 0 && imaginario < 0) {
-        document.getElementById('quad').innerHTML = 'Quarto';
+        // document.getElementById('quad').innerHTML = 'Quarto';
         return 4;
     }
     // Se estiver sobre algum eixo ou na origem
-    document.getElementById('quad').innerHTML = 'Nenhum';
+    // document.getElementById('quad').innerHTML = 'Nenhum';
     return 0;
 }
 // CALCULA UM INTERVALO ADEQUADO PARA OS EIXOS
