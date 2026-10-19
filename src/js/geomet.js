@@ -19,11 +19,9 @@ function entra(quant){
 }
 function desenha(){
     const quantidad = Number(document.getElementById('quant').value);
-
     let real = [];
     let imaginario = [];
     let maiorValor = 0;
-
     const canvas = document.getElementById('ag');
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);

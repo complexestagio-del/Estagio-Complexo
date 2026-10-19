@@ -20,6 +20,21 @@ function remove() {
     }
 }
 
+function exibeTabela(r){
+    const tbody=document.getElementById('tb-main');
+    let tb=[];
+    tbody.innerHTML='';
+    for (i = 0; i < contador; i++){
+        tb[i] = document.createElement("tr");
+        tb[i].innerHTML = `
+        <td>${r[i].real} ${ r[i].imaginario < 0 ? "" : "+"} ${r[i].imaginario}i</td>`+
+        `<td>${r[i].quadrante}</td>`+
+        `<td>${r[i].modulo}</td>`+
+        `<td>${r[i].argumento}°</td>`;
+        tbody.appendChild(tb[i]);
+    }
+}
+
 // CRIACAO DO PONTO
 function criarPonto(real, imaginario) {
     const ponto = {
@@ -54,38 +69,30 @@ function calcularModulo(real, imaginario) {
 function calcularArgumento(real, imaginario) {
     // O numero 0 + 0i nao possui argumento definido
     if (real === 0 && imaginario === 0) {
-        document.getElementById('angulo').innerHTML = 'Não há';
-        return null;
+        return 0;
     }
     const argumentoRadianos = Math.atan2(imaginario, real);
     let argumentoGraus = argumentoRadianos * 180 / Math.PI;
     if (argumentoGraus<0){
         argumentoGraus = 360 + argumentoGraus;
     }
-    // document.getElementById('anguloGraus').innerHTML = formatarNumero(argumentoGraus);
-    // document.getElementById('anguloRad').innerHTML = formatarNumero(argumentoRadianos);
-    return argumentoGraus;
+    return Number(argumentoGraus);
 }
 // DESCOBRE O QUADRANTE
 function descobrirQuadrante(real, imaginario) {
     if (real > 0 && imaginario > 0) {
-        // document.getElementById('quad').innerHTML = 'Primeiro';
         return 1;
     }
     if (real < 0 && imaginario > 0) {
-        // document.getElementById('quad').innerHTML = "Segundo";
         return 2;
     }
     if (real < 0 && imaginario < 0) {
-        // document.getElementById('quad').innerHTML = 'Terceiro';
         return 3;
     }
     if (real > 0 && imaginario < 0) {
-        // document.getElementById('quad').innerHTML = 'Quarto';
         return 4;
     }
     // Se estiver sobre algum eixo ou na origem
-    // document.getElementById('quad').innerHTML = 'Nenhum';
     return 0;
 }
 // CALCULA UM INTERVALO ADEQUADO PARA OS EIXOS
@@ -131,6 +138,7 @@ function desenharSeta(ctx, inicioX, inicioY, fimX, fimY) {
 function desenharGrafico() {
     let real = [];
     let imaginario = [];
+    let resultado = [];
     const canvas = document.getElementById('ag');
     const ctx = canvas.getContext('2d');
     let maiorValor = 0;
@@ -280,18 +288,22 @@ function desenharGrafico() {
         argumento[i] = calcularArgumento(real[i], imaginario[i]);
         const quadrante = [];
         quadrante[i] = descobrirQuadrante(real[i], imaginario[i]);
-        let resultado = [];
+        let argumentoFinal = null;
+        if (argumento !== null) {
+            argumentoFinal = Number(argumento).toFixed(2);
+        }
         resultado[i] = {
             real: real[i],
             imaginario: imaginario[i],
             ponto: vetor[i].ponto,
             vetor: vetor[i],
-            modulo: Number(modulo[i].toFixed(2)),
-            argumento: argumento === null ? null : Number(argumento).toFixed(2),
+            modulo: Number(modulo[i]).toFixed(2),
+            argumento: argumentoFinal,
             quadrante: quadrante[i],
             intervalo: intervalo,
             escala: escala
         };
     }
+    exibeTabela(resultado);
     return resultado;
 }
