@@ -1,3 +1,4 @@
+let quant = document.getElementById('quant').value;
 function entra(quant){
     if(quant=='3'){
         document.getElementById('h4').style.display = 'none';
@@ -17,6 +18,37 @@ function entra(quant){
         document.getElementById('h6').style.display='block';
     }
 }
+function area(){
+    switch(quant){
+        case '3':
+            const matriz = [
+                [
+                    Number(document.getElementById('a1').value),//a1
+                    Number(document.getElementById('b1').value),//b1
+                    1
+                ],
+                [
+                    Number(document.getElementById('a2').value),//a2
+                    Number(document.getElementById('b2').value),//b2
+                    1
+                ],
+                [
+                    Number(document.getElementById('a3').value),//a3
+                    Number(document.getElementById('b3').value),//b3
+                    1
+                ]
+            ];
+            //se o determinante for 0, os pontos estão alinhados
+            const lado1=(matriz[0][0]*matriz[1][1]*matriz[2][2]) + (matriz[0][1]*matriz[2][1]*matriz[0][2]) + (matriz[2][0]*matriz[0][1]*matriz[1][2]);
+            const lado2=(matriz[0][2]*matriz[1][1]*matriz[2][0]) + (matriz[1][2]*matriz[2][1]*matriz[0][0]) + (matriz[2][2]*matriz[0][1]*matriz[1][0]);
+            const area = (lado1-lado2)/2; //area: determinante/2
+            return area;
+            break;
+        case '4':
+        case '5':
+        case '6':
+    }
+}
 function desenha(){
     const quantidad = Number(document.getElementById('quant').value);
     let real = [];
@@ -25,7 +57,6 @@ function desenha(){
     const canvas = document.getElementById('ag');
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     for (i = 0; i < quantidad; i++) {
         real[i] = Number(document.getElementById('a' + (i + 1)).value);
         imaginario[i] = Number(document.getElementById('b' + (i + 1)).value);
@@ -171,6 +202,7 @@ function desenha(){
         argumento[i] = calcularArgumento(real[i], imaginario[i]);
         const quadrante = [];
         quadrante[i] = descobrirQuadrante(real[i], imaginario[i]);
+        
         let resultado = [];
         resultado[i] = {
             real: real[i],
@@ -184,5 +216,7 @@ function desenha(){
             escala: escala
         };
     }
-    return resultado;
+    document.getElementById('result').style.display='block';
+    document.getElementById('area').innerHTML=area();
+    //return resultado;
 }

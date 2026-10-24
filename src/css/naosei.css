@@ -37,16 +37,15 @@ select{
 }
 header{
   background-color: rgb(65, 146, 192);
+  /* border:solid rgb(65, 146, 192); */
   color:whitesmoke;
   display:flex;
-  padding:20px;
-  margin: 0 auto;
+  padding:0 15px;
   li{
     list-style:none;
     margin:  10px;
     display:inline-block;
     a{
-      font-size:18px;
       padding:7px 9px;
       border-radius:5%;
       text-decoration: none;
@@ -57,19 +56,7 @@ header{
     }
   }
 }
-input[type="number"]{
-  width: 50px;
-}
-label{
-  font-size:16px;
-}
-.main{
-  font-weight: bold;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-  color:whitesmoke;
-}
 .footer{
-  position: sticky;
   bottom: 0;
   background-color: rgb(32, 53, 65);
   text-align: center;
@@ -91,7 +78,18 @@ label{
     }
   }
 }
-#h4,#h5,#h6{
+input[type="number"]{
+  width: 55px;
+}
+label{
+  font-size:16px;
+}
+.main{
+  font-weight: bold;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  color:whitesmoke;
+}
+#h4,#h5,#h6,#result{
   display:none;
 }
 /* canvas{
