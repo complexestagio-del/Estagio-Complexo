@@ -10,8 +10,9 @@
 </head>
 
 <body>
-    <header class="header pb-4">
-        <h1 class="h1 ">Calculadora complexa</h1>
+    <header class="header">
+        <h2>Calculadora complexa</h2>
+        <!-- menu -->
         <ul>
             <li><a href="index.html">Operações básicas na forma algébrica</a></li>
             <li><a href="basi2.html">Operações básicas na forma trigonométrica</a></li>
@@ -20,7 +21,7 @@
             <li><a href="algtrigo.html">Conversão de formas</a></li>
         </ul>
     </header>
-    <div class="container mt-4">
+    <div class="container mt-3">
         <h1>Geometria analítica e números complexos</h1>
         <div class="mt-4 col-lg-8" col-md-10 id="main">
             <label>Quantidade de entradas:</label>
@@ -64,9 +65,12 @@
         </div>
         <canvas class="mt-4" id="ag" width="600" height="500" style="border:1px solid #000000;max-width: 100%;"></canvas>
         <p><button onclick="desenha()">Desenhar</button></p>
+        <!-- <p><button class="btn btn-danger" onclick="teste()">TESTE</button></p> -->
         <div id="result">
             <p>Área: <span id="area"></span></p>
         </div>
+        <h3><a class="btn btn-primary" href="https://pt.wikipedia.org/wiki/Regra_de_Sarrus" target="_blank">Área de uma região triangular</a></h3>
+        <h3><a class="btn btn-primary" href="https://brasilescola.uol.com.br/matematica/area-um-triangulo.htm" target="_blank">Regra de sarrus</a></h3>
     </div>
     <footer class="footer mt-auto">
         <ul>

@@ -1,27 +1,28 @@
 let quant = document.getElementById('quant').value;
-function entra(quant){
-    if(quant=='3'){
+function entra(quant) {
+    if (quant == '3') {
         document.getElementById('h4').style.display = 'none';
-        document.getElementById('h5').style.display='none';
-        document.getElementById('h6').style.display='none';
-    }else if (quant =='4'){
+        document.getElementById('h5').style.display = 'none';
+        document.getElementById('h6').style.display = 'none';
+    } else if (quant == '4') {
         document.getElementById('h4').style.display = 'block';
-        document.getElementById('h5').style.display='none';
-        document.getElementById('h6').style.display='none';
-    }else if (quant=='5'){
+        document.getElementById('h5').style.display = 'none';
+        document.getElementById('h6').style.display = 'none';
+    } else if (quant == '5') {
         document.getElementById('h4').style.display = 'block';
-        document.getElementById('h5').style.display='block';
-        document.getElementById('h6').style.display='none';
-    }else if (quant == '6'){
+        document.getElementById('h5').style.display = 'block';
+        document.getElementById('h6').style.display = 'none';
+    } else if (quant == '6') {
         document.getElementById('h4').style.display = 'block';
-        document.getElementById('h5').style.display='block';
-        document.getElementById('h6').style.display='block';
+        document.getElementById('h5').style.display = 'block';
+        document.getElementById('h6').style.display = 'block';
     }
 }
-function area(){
-    switch(quant){
+function resolucao() {
+    let linha = [];
+    switch (quant) {
         case '3':
-            const matriz = [
+            const coordenadas = [
                 [
                     Number(document.getElementById('a1').value),//a1
                     Number(document.getElementById('b1').value),//b1
@@ -39,17 +40,71 @@ function area(){
                 ]
             ];
             //se o determinante for 0, os pontos estão alinhados
-            const lado1=(matriz[0][0]*matriz[1][1]*matriz[2][2]) + (matriz[0][1]*matriz[2][1]*matriz[0][2]) + (matriz[2][0]*matriz[0][1]*matriz[1][2]);
-            const lado2=(matriz[0][2]*matriz[1][1]*matriz[2][0]) + (matriz[1][2]*matriz[2][1]*matriz[0][0]) + (matriz[2][2]*matriz[0][1]*matriz[1][0]);
-            const area = (lado1-lado2)/2; //area: determinante/2
-            return area;
-            break;
+            linha.push('Em geometria analítica, se os pontos de Z1, Z2 e Z3 não estão alinhados, eles formam um triângulo. A sua área pode ser calculada separando os valores reais e imaginários em uma matriz 3x3:');
+            linha.push(`
+                <table id="solve">
+                    <tr>
+                        <td>a1</td>
+                        <td>b1</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>a2</td>
+                        <td>b2</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>a3</td>
+                        <td>b3</td>
+                        <td>1</td>
+                    </tr>
+                </table><br>`);
         case '4':
         case '5':
         case '6':
     }
 }
-function desenha(){
+// function teste() {
+//     let coordenadas = [];
+//     quant = Number(quant);
+//     for (let i = 0; i < quant; i++) {
+//         coordenadas[i] = [
+//             Number(document.getElementById('a' + (i + 1)).value),
+//             Number(document.getElementById('b' + (i + 1)).value)
+//         ];
+//     }//aqui ele só pega 3 elementos??
+//     console.log(coordenadas);
+// }
+
+function area() {
+    let coordenadas = [];
+    let total = 0;
+    switch (quant) {
+        case '3':
+            for (let i = 0; i < quant; i++) {
+                coordenadas[i] = [
+                    Number(document.getElementById('a' + (i + 1)).value),
+                    Number(document.getElementById('b' + (i + 1)).value),
+                    1
+                ];
+            }
+            //se o determinante for 0, os pontos estão alinhados
+            const lado1 = (coordenadas[0][0] * coordenadas[1][1] * coordenadas[2][2]) + (coordenadas[0][1] * coordenadas[2][1] * coordenadas[0][2]) + (coordenadas[2][0] * coordenadas[0][1] * coordenadas[1][2]);
+            const lado2 = (coordenadas[0][2] * coordenadas[1][1] * coordenadas[2][0]) + (coordenadas[1][2] * coordenadas[2][1] * coordenadas[0][0]) + (coordenadas[2][2] * coordenadas[0][1] * coordenadas[1][0]);
+            const area = (lado1 - lado2) / 2; //area: determinante/2
+            //eu pensei em usar Math.det(coordenadas) mas nao tava funcionando???
+            return area;
+        case '4':
+            //divisão em triângulos ou /método do determinante/gauss
+            //talvez essa resposta do stack overflow: https://stackoverflow.com/a/33670691
+        case '5':
+            //forma do cadarço (coordenadas)
+        case '6':
+            //triangulacao
+            //( 3*distancia²*sqrt(3) )/2 -> poligono regular
+    }
+}
+function desenha() {
     const quantidad = Number(document.getElementById('quant').value);
     let real = [];
     let imaginario = [];
@@ -202,7 +257,7 @@ function desenha(){
         argumento[i] = calcularArgumento(real[i], imaginario[i]);
         const quadrante = [];
         quadrante[i] = descobrirQuadrante(real[i], imaginario[i]);
-        
+
         let resultado = [];
         resultado[i] = {
             real: real[i],
@@ -216,7 +271,7 @@ function desenha(){
             escala: escala
         };
     }
-    document.getElementById('result').style.display='block';
-    document.getElementById('area').innerHTML=area();
+    document.getElementById('result').style.display = 'block';
+    document.getElementById('area').innerHTML = area();
     //return resultado;
 }
