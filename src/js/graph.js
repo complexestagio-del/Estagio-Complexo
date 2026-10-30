@@ -288,17 +288,13 @@ function desenharGrafico() {
         argumento[i] = calcularArgumento(real[i], imaginario[i]);
         const quadrante = [];
         quadrante[i] = descobrirQuadrante(real[i], imaginario[i]);
-        let argumentoFinal = null;
-        if (argumento !== null) {
-            argumentoFinal = Number(argumento).toFixed(2);
-        }
         resultado[i] = {
             real: real[i],
             imaginario: imaginario[i],
             ponto: vetor[i].ponto,
             vetor: vetor[i],
             modulo: Number(modulo[i]).toFixed(2),
-            argumento: argumentoFinal,
+            argumento: argumento[i] === null ? null : Number(argumento[i]).toFixed(2),
             quadrante: quadrante[i],
             intervalo: intervalo,
             escala: escala

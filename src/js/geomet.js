@@ -18,7 +18,9 @@ function entra(quant) {
         document.getElementById('h6').style.display = 'block';
     }
 }
+
 function resolucao() {
+    let quant = document.getElementById('quant').value;
     let linha = [];
     switch (quant) {
         case '3':
@@ -40,9 +42,9 @@ function resolucao() {
                 ]
             ];
             //se o determinante for 0, os pontos estão alinhados
-            linha.push('Em geometria analítica, se os pontos de Z1, Z2 e Z3 não estão alinhados, eles formam um triângulo. A sua área pode ser calculada separando os valores reais e imaginários em uma matriz 3x3:');
+            linha.push('<p>Em geometria analítica, se os pontos de Z1, Z2 e Z3 não estão alinhados, eles formam um triângulo. A sua área pode ser calculada separando os valores reais e imaginários em uma matriz 3x3:</p>');
             linha.push(`
-                <table id="solve">
+                <table class="solve">
                     <tr>
                         <td>a1</td>
                         <td>b1</td>
@@ -58,27 +60,43 @@ function resolucao() {
                         <td>b3</td>
                         <td>1</td>
                     </tr>
-                </table><br>`);
+                </table>`);
+                linha.push(`<p>Colocando os valores dentro da matriz:</p><table class="solve">`);
+                for (let i = 0; i < quant; i++) {
+                    linha.push(`
+                        <tr>
+                            <td>${coordenadas[i][0]}</td>
+                            <td>${coordenadas[i][1]}</td>
+                            <td>${coordenadas[i][2]}</td>
+                        </tr>
+                    `);
+                }
+                const lado1 = (coordenadas[0][0] * coordenadas[1][1] * coordenadas[2][2]) + (coordenadas[0][1] * coordenadas[2][1] * coordenadas[0][2]) + (coordenadas[2][0] * coordenadas[0][1] * coordenadas[1][2]);
+                const lado2 = (coordenadas[0][2] * coordenadas[1][1] * coordenadas[2][0]) + (coordenadas[1][2] * coordenadas[2][1] * coordenadas[0][0]) + (coordenadas[2][2] * coordenadas[0][1] * coordenadas[1][0]);
+                const det=lado1 - lado2
+                const area = det / 2; //area: determinante/2
+                linha.push(`</table><br>
+                <p>Utilizando a regra de sarrus, calculamos o determinante. Se o ele for igual a zero, significa que os pontos estão alinhados. Senão, dividimos o determinante por 2 para descobrir a área.</p>    
+                <p>O determinante resultou em <b>${det}</b>.`);
+                if(det==0){
+                    linha.push(" Portanto, os pontos estão alinhados.</p>");
+                }else{
+                    linha.push(` Portanto, os pontos NÃO estão alinhados, e a área resultou em <b>${Math.abs(area)}</b></p>`);
+                }
+                return linha.join("");
         case '4':
+            //a fazer
         case '5':
+            //a fazer
         case '6':
+            //a fazer
+            //posso trocar para um default ja que eles todos usam a fórmula do cadarço
     }
 }
-// function teste() {
-//     let coordenadas = [];
-//     quant = Number(quant);
-//     for (let i = 0; i < quant; i++) {
-//         coordenadas[i] = [
-//             Number(document.getElementById('a' + (i + 1)).value),
-//             Number(document.getElementById('b' + (i + 1)).value)
-//         ];
-//     }//aqui ele só pega 3 elementos??
-//     console.log(coordenadas);
-// }
 
 function area() {
+    let quant = document.getElementById('quant').value;
     let coordenadas = [];
-    let total = 0;
     switch (quant) {
         case '3':
             for (let i = 0; i < quant; i++) {
@@ -88,22 +106,32 @@ function area() {
                     1
                 ];
             }
-            //se o determinante for 0, os pontos estão alinhados
             const lado1 = (coordenadas[0][0] * coordenadas[1][1] * coordenadas[2][2]) + (coordenadas[0][1] * coordenadas[2][1] * coordenadas[0][2]) + (coordenadas[2][0] * coordenadas[0][1] * coordenadas[1][2]);
             const lado2 = (coordenadas[0][2] * coordenadas[1][1] * coordenadas[2][0]) + (coordenadas[1][2] * coordenadas[2][1] * coordenadas[0][0]) + (coordenadas[2][2] * coordenadas[0][1] * coordenadas[1][0]);
-            const area = (lado1 - lado2) / 2; //area: determinante/2
-            //eu pensei em usar Math.det(coordenadas) mas nao tava funcionando???
+            const area = (lado1 - lado2) / 2; //area = determinante/2
+            document.getElementById("result").innerHTML=resolucao();
             return area;
-        case '4':
-            //divisão em triângulos ou /método do determinante/gauss
-            //talvez essa resposta do stack overflow: https://stackoverflow.com/a/33670691
-        case '5':
-            //forma do cadarço (coordenadas)
-        case '6':
-            //triangulacao
-            //( 3*distancia²*sqrt(3) )/2 -> poligono regular
+        default:
+            //https://stackoverflow.com/a/33670691 -> if you are reading this, thank you so much lmao
+            //fórmula do cadarço
+            var ac = 0;
+            for (let i = 0; i < quant; i++) {
+                coordenadas[i] = criarPonto(
+                    Number(document.getElementById('a' + (i + 1)).value),
+                    Number(document.getElementById('b' + (i + 1)).value)
+                );
+            }
+            for (var i = 0, c = coordenadas.length; i < c; i++) {
+                var a1 = coordenadas[i].x; //ponto a atual
+                var b2 = coordenadas[i == coordenadas.length - 1 ? 0 : i + 1].y; //ponto b do PRÓXIMO. vê se i for o indice da ultima coordenada 
+                var a2 = coordenadas[i == coordenadas.length - 1 ? 0 : i + 1].x; //ponto a do próximo. vê se i for o indice da ultima coordenada 
+                var b1 = coordenadas[i].y;// ponto b atual
+                ac += (a1 * b2 -a2 * b1) * 0.5;
+            }
+            return Number(Math.abs(ac));
     }
 }
+
 function desenha() {
     const quantidad = Number(document.getElementById('quant').value);
     let real = [];

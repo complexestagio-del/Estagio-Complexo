@@ -93,7 +93,7 @@ label{
 #h4,#h5,#h6,#result{
   display:none;
 }
-#solve{
+.solve{
   td{
     padding:2px;
   }
